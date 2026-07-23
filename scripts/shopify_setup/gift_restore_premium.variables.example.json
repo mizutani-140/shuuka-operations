@@ -1,0 +1,9 @@
+{
+  "premiumProduct": {
+    "id": "gid://shopify/Product/9431536173244",
+    "status": "ACTIVE",
+    "handle": "premium-grape-gift",
+    "redirectNewHandle": false
+  },
+  "redirectId": "_REDIRECT_ID_FROM_RETIRE_RESULT_"
+}

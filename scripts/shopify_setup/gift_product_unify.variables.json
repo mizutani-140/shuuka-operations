@@ -1,0 +1,88 @@
+{
+  "identifier": {
+    "id": "gid://shopify/Product/9431536074940"
+  },
+  "synchronous": true,
+  "product": {
+    "title": "旬のブドウギフト",
+    "handle": "grape-gift-3kg",
+    "vendor": "祝果",
+    "productType": "フルーツギフト",
+    "status": "ACTIVE",
+    "tags": [
+      "予約販売",
+      "ブドウ",
+      "ギフト",
+      "のし対応",
+      "松竹梅"
+    ],
+    "descriptionHtml": "<p>山梨の旬のブドウを、贈る理由に合わせた松・竹・梅の三つの贈答格でお仕立てします。品種の指定販売ではなく、収穫時の味、色合い、房姿を見て、その時いちばん良い内容を祝果が選びます。</p><p>のし・名入れ・メッセージ・包装に無料で対応します。</p>",
+    "productOptions": [
+      {
+        "id": "gid://shopify/ProductOption/11740030369980",
+        "name": "お仕立て",
+        "position": 1,
+        "values": [
+          {
+            "id": "gid://shopify/ProductOptionValue/4785522540732",
+            "name": "梅｜旬の定番"
+          },
+          {
+            "id": "gid://shopify/ProductOptionValue/4785522573500",
+            "name": "竹｜華やぎ"
+          },
+          {
+            "name": "松｜特別"
+          }
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47076453744828",
+        "optionValues": [
+          {
+            "optionId": "gid://shopify/ProductOption/11740030369980",
+            "id": "gid://shopify/ProductOptionValue/4785522540732"
+          }
+        ],
+        "position": 1,
+        "price": "5000",
+        "sku": "SHUKA-GRAPE-3KG-SHU-5000",
+        "taxable": true
+      },
+      {
+        "id": "gid://shopify/ProductVariant/47076453777596",
+        "optionValues": [
+          {
+            "optionId": "gid://shopify/ProductOption/11740030369980",
+            "id": "gid://shopify/ProductOptionValue/4785522573500"
+          }
+        ],
+        "position": 2,
+        "price": "10000",
+        "sku": "SHUKA-GRAPE-3KG-CHOSHU-10000",
+        "taxable": true
+      },
+      {
+        "optionValues": [
+          {
+            "optionId": "gid://shopify/ProductOption/11740030369980",
+            "name": "松｜特別"
+          }
+        ],
+        "position": 3,
+        "price": "20000",
+        "sku": "SHUKA-GRAPE-PREMIUM-20000",
+        "taxable": true,
+        "inventoryQuantities": [
+          {
+            "locationId": "gid://shopify/Location/87425089724",
+            "name": "available",
+            "quantity": 8
+          }
+        ]
+      }
+    ]
+  }
+}

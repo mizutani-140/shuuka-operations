@@ -1,0 +1,52 @@
+query GiftArchitectureVerify($mainProductId: ID!, $premiumProductId: ID!) {
+  main: product(id: $mainProductId) {
+    id
+    handle
+    title
+    status
+    options {
+      id
+      name
+      optionValues {
+        id
+        name
+      }
+    }
+    variants(first: 10) {
+      nodes {
+        id
+        title
+        sku
+        price
+        position
+        availableForSale
+        inventoryQuantity
+      }
+    }
+    tiers: metafield(namespace: "gift", key: "tiers") {
+      id
+      type
+      jsonValue
+      compareDigest
+    }
+    varieties: metafield(namespace: "gift", key: "varieties") {
+      id
+      type
+      jsonValue
+      compareDigest
+    }
+  }
+  premium: product(id: $premiumProductId) {
+    id
+    handle
+    title
+    status
+  }
+  premiumRedirects: urlRedirects(first: 10, query: "path:/products/premium-grape-gift") {
+    nodes {
+      id
+      path
+      target
+    }
+  }
+}

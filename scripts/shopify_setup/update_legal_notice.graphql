@@ -1,0 +1,12 @@
+mutation UpdateLegalNotice($body: String!) {
+  shopPolicyUpdate(shopPolicy: { type: LEGAL_NOTICE, body: $body }) {
+    shopPolicy {
+      id
+      type
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

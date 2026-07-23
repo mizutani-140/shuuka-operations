@@ -1,0 +1,41 @@
+mutation GiftOptionPrepare(
+  $productId: ID!
+  $option: OptionUpdateInput!
+  $optionValuesToAdd: [OptionValueCreateInput!]
+  $optionValuesToUpdate: [OptionValueUpdateInput!]
+  $variantStrategy: ProductOptionUpdateVariantStrategy
+) {
+  productOptionUpdate(
+    productId: $productId
+    option: $option
+    optionValuesToAdd: $optionValuesToAdd
+    optionValuesToUpdate: $optionValuesToUpdate
+    variantStrategy: $variantStrategy
+  ) {
+    product {
+      id
+      options {
+        id
+        name
+        optionValues {
+          id
+          name
+          hasVariants
+        }
+      }
+      variants(first: 10) {
+        nodes {
+          id
+          title
+          sku
+          inventoryQuantity
+        }
+      }
+    }
+    userErrors {
+      field
+      message
+      code
+    }
+  }
+}

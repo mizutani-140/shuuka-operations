@@ -1,0 +1,12 @@
+mutation UpdateRefundPolicy($body: String!) {
+  shopPolicyUpdate(shopPolicy: { type: REFUND_POLICY, body: $body }) {
+    shopPolicy {
+      id
+      type
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

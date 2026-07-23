@@ -1,0 +1,24 @@
+mutation UpdateContactPage($id: ID!) {
+  pageUpdate(
+    id: $id
+    page: {
+      title: "お問い合わせ"
+      body: "<p>ギフト相談、お問い合わせはこちらから。</p>"
+      isPublished: true
+      templateSuffix: "gift-content"
+    }
+  ) {
+    page {
+      id
+      title
+      handle
+      templateSuffix
+      isPublished
+    }
+    userErrors {
+      code
+      field
+      message
+    }
+  }
+}

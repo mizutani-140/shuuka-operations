@@ -1,0 +1,14 @@
+mutation GiftArchivedProductHandleUpdate($product: ProductUpdateInput!) {
+  productUpdate(product: $product) {
+    product {
+      id
+      handle
+      title
+      status
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

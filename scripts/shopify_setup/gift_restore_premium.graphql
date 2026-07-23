@@ -1,0 +1,24 @@
+mutation GiftRestorePremium(
+  $premiumProduct: ProductUpdateInput!
+  $redirectId: ID!
+) {
+  premium: productUpdate(product: $premiumProduct) {
+    product {
+      id
+      handle
+      title
+      status
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+  redirect: urlRedirectDelete(id: $redirectId) {
+    deletedUrlRedirectId
+    userErrors {
+      field
+      message
+    }
+  }
+}

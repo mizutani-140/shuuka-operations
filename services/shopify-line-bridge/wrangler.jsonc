@@ -1,0 +1,56 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "shuuka-shopify-line-bridge",
+  "main": "src/index.ts",
+  "compatibility_date": "2026-07-16",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "vars": {
+    "APP_BASE_URL": "https://shuuka-shopify-line-bridge.k-mizutani.workers.dev",
+    "LINE_HARNESS_API_URL": "https://shuuka-line-harness.k-mizutani.workers.dev",
+    "LINE_LIFF_ID": "2010723883-nNNXQGQn",
+    "SHOPIFY_API_VERSION": "2026-07",
+    "SHOPIFY_SHOP_DOMAIN": "ksz15x-gq.myshopify.com",
+    "SHOPIFY_API_KEY": "e59b352152ab223f9515b8d2b5034281",
+    "SHOPIFY_CUSTOMER_ACCOUNT_CLIENT_ID": "2f9a39bd-9105-4d91-ba99-0bfe995c67d0",
+    "SHOPIFY_CUSTOMER_ACCOUNT_AUTHORIZATION_URL": "https://shopify.com/authentication/78124712124/oauth/authorize",
+    "SHOPIFY_CUSTOMER_ACCOUNT_TOKEN_URL": "https://shopify.com/authentication/78124712124/oauth/token",
+    "SHOPIFY_CUSTOMER_ACCOUNT_GRAPHQL_URL": "https://shopify.com/78124712124/account/customer/api/2026-07/graphql"
+  },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "shuuka-shopify-line-bridge",
+      "database_id": "af909da6-7aee-45a1-b01e-af378835632e",
+      "migrations_dir": "migrations"
+    }
+  ],
+  "queues": {
+    "producers": [
+      {
+        "binding": "SHOPIFY_EVENTS",
+        "queue": "shuuka-shopify-events"
+      }
+    ],
+    "consumers": [
+      {
+        "queue": "shuuka-shopify-events",
+        "max_batch_size": 10,
+        "max_batch_timeout": 5,
+        "max_retries": 5,
+        "dead_letter_queue": "shuuka-shopify-events-dlq",
+        "retry_delay": 30
+      }
+    ]
+  },
+  "observability": {
+    "enabled": true,
+    "head_sampling_rate": 1,
+    "logs": {
+      "enabled": true,
+      "invocation_logs": true,
+      "head_sampling_rate": 1,
+      "persist": true
+    }
+  }
+}

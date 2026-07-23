@@ -1,0 +1,24 @@
+{
+  "productId": "gid://shopify/Product/9431536074940",
+  "option": {
+    "id": "gid://shopify/ProductOption/11740030369980",
+    "name": "お仕立て",
+    "position": 1
+  },
+  "optionValuesToUpdate": [
+    {
+      "id": "gid://shopify/ProductOptionValue/4785522540732",
+      "name": "梅｜旬の定番"
+    },
+    {
+      "id": "gid://shopify/ProductOptionValue/4785522573500",
+      "name": "竹｜華やぎ"
+    }
+  ],
+  "optionValuesToAdd": [
+    {
+      "name": "松｜特別"
+    }
+  ],
+  "variantStrategy": "LEAVE_AS_IS"
+}

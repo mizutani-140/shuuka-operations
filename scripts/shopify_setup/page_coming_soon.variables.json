@@ -1,0 +1,9 @@
+{
+  "page": {
+    "title": "これから届く果物",
+    "handle": "coming-soon",
+    "body": "<p>予約開始前の果物を案内するページです。テーマテンプレートで内容を表示します。</p>",
+    "isPublished": true,
+    "templateSuffix": "coming-soon"
+  }
+}

@@ -1,0 +1,16 @@
+mutation UpdateShippingRatesPage($id: ID!, $page: PageUpdateInput!) {
+  pageUpdate(id: $id, page: $page) {
+    page {
+      id
+      title
+      handle
+      templateSuffix
+      isPublished
+    }
+    userErrors {
+      code
+      field
+      message
+    }
+  }
+}

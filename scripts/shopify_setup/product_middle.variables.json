@@ -1,0 +1,76 @@
+{
+  "synchronous": true,
+  "productSet": {
+    "title": "旬のブドウギフト 3kg箱",
+    "handle": "grape-gift-3kg",
+    "vendor": "祝果",
+    "productType": "フルーツギフト",
+    "status": "ACTIVE",
+    "tags": ["予約販売", "ブドウ", "ギフト", "のし対応"],
+    "descriptionHtml": "<p>既存の3kg箱を基準にした、ブドウ2房の予約ギフトです。¥5,000と¥10,000は同じ箱・同じ房数で、秀品と超秀品の規格差で選べます。品種特徴・生産者名は、やす確認後に差し替えます。</p>",
+    "productOptions": [
+      {
+        "name": "規格",
+        "position": 1,
+        "values": [
+          { "name": "秀品 2房" },
+          { "name": "超秀品 2房" }
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "optionValues": [{ "optionName": "規格", "name": "秀品 2房" }],
+        "price": "5000",
+        "sku": "SHUKA-GRAPE-3KG-SHU-5000",
+        "taxable": true,
+        "inventoryQuantities": [
+          {
+            "locationId": "gid://shopify/Location/87425089724",
+            "name": "available",
+            "quantity": 20
+          }
+        ]
+      },
+      {
+        "optionValues": [{ "optionName": "規格", "name": "超秀品 2房" }],
+        "price": "10000",
+        "sku": "SHUKA-GRAPE-3KG-CHOSHU-10000",
+        "taxable": true,
+        "inventoryQuantities": [
+          {
+            "locationId": "gid://shopify/Location/87425089724",
+            "name": "available",
+            "quantity": 20
+          }
+        ]
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "booking",
+        "key": "deadline",
+        "type": "single_line_text_field",
+        "value": "2026年8月10日"
+      },
+      {
+        "namespace": "booking",
+        "key": "shipping_window",
+        "type": "single_line_text_field",
+        "value": "2026年8月下旬以降 順次出荷"
+      },
+      {
+        "namespace": "booking",
+        "key": "current_varieties",
+        "type": "single_line_text_field",
+        "value": "シャインマスカット等（やす確認後に差し替え）"
+      },
+      {
+        "namespace": "booking",
+        "key": "producer_note",
+        "type": "single_line_text_field",
+        "value": "生産者名は確定後に小さく併記"
+      }
+    ]
+  }
+}

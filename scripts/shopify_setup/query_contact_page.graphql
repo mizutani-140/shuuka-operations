@@ -1,0 +1,11 @@
+query ContactPageByHandle {
+  pages(first: 1, query: "handle:contact") {
+    nodes {
+      id
+      title
+      handle
+      templateSuffix
+      isPublished
+    }
+  }
+}

@@ -1,0 +1,37 @@
+mutation GiftProductUnify(
+  $identifier: ProductSetIdentifiers!
+  $product: ProductSetInput!
+  $synchronous: Boolean!
+) {
+  productSet(identifier: $identifier, input: $product, synchronous: $synchronous) {
+    product {
+      id
+      handle
+      title
+      status
+      options {
+        id
+        name
+        optionValues {
+          id
+          name
+        }
+      }
+      variants(first: 10) {
+        nodes {
+          id
+          title
+          sku
+          price
+          position
+          inventoryQuantity
+        }
+      }
+    }
+    userErrors {
+      field
+      message
+      code
+    }
+  }
+}
