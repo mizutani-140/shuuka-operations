@@ -1,0 +1,40 @@
+# This repository is deliberately allow-listed. The storefront themes and
+# LINE Harness are independent repositories and must never become gitlinks.
+/*
+!/.gitignore
+!/README.md
+!/deploy/
+!/services/
+!/scripts/
+
+/services/*
+!/services/shopify-line-bridge/
+
+/scripts/*
+!/scripts/shopify_setup/
+
+# Secrets: commit examples only.
+**/.env
+**/.env.*
+**/.dev.vars
+!**/.dev.vars.example
+**/*.pem
+**/*.key
+**/*.p12
+**/*.pfx
+
+# Generated and local-only state.
+**/.DS_Store
+**/node_modules/
+**/.wrangler/
+**/.shopify/
+**/dist/
+**/coverage/
+**/.coverage
+**/.cache/
+**/.turbo/
+**/.vite/
+**/__pycache__/
+**/*.py[cod]
+
+/services/shopify-line-bridge/worker-configuration.d.ts
