@@ -1,0 +1,9 @@
+{
+  "page": {
+    "title": "ブドウ予約販売",
+    "handle": "grape-reservation",
+    "body": "<p>ブドウ予約販売ページです。テーマテンプレートで内容を表示します。</p>",
+    "isPublished": true,
+    "templateSuffix": "grape-reservation"
+  }
+}

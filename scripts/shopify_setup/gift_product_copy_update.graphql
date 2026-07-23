@@ -1,0 +1,18 @@
+mutation GiftProductCopyUpdate($product: ProductUpdateInput!) {
+  productUpdate(product: $product) {
+    product {
+      id
+      handle
+      title
+      status
+      vendor
+      productType
+      tags
+      descriptionHtml
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

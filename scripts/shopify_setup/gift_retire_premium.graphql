@@ -1,0 +1,28 @@
+mutation GiftRetirePremium(
+  $premiumProduct: ProductUpdateInput!
+  $redirect: UrlRedirectInput!
+) {
+  premium: productUpdate(product: $premiumProduct) {
+    product {
+      id
+      handle
+      title
+      status
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+  redirect: urlRedirectCreate(urlRedirect: $redirect) {
+    urlRedirect {
+      id
+      path
+      target
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

@@ -1,0 +1,26 @@
+{
+  "tiersDefinition": {
+    "namespace": "gift",
+    "key": "tiers",
+    "name": "贈答格（松竹梅）",
+    "description": "祝果の一商品三段階構成。贈る理由、価格表示、お仕立て候補をJSONで管理します。",
+    "ownerType": "PRODUCT",
+    "type": "json",
+    "pin": true,
+    "access": {
+      "storefront": "PUBLIC_READ"
+    }
+  },
+  "varietiesDefinition": {
+    "namespace": "gift",
+    "key": "varieties",
+    "name": "今季のお仕立て候補",
+    "description": "松竹梅ごとの候補品種、収穫時期、説明をJSONで管理します。品種指定販売には使用しません。",
+    "ownerType": "PRODUCT",
+    "type": "json",
+    "pin": true,
+    "access": {
+      "storefront": "PUBLIC_READ"
+    }
+  }
+}

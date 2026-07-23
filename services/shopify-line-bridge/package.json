@@ -1,0 +1,32 @@
+{
+  "name": "shuuka-shopify-line-bridge",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy",
+    "typegen": "wrangler types",
+    "typecheck": "tsc --noEmit",
+    "test": "vitest run",
+    "check": "pnpm typegen && pnpm typecheck && pnpm test"
+  },
+  "dependencies": {
+    "@line-harness/sdk": "link:../line-harness/packages/sdk",
+    "hono": "^4.11.9"
+  },
+  "devDependencies": {
+    "@types/node": "^26.0.0",
+    "typescript": "^5.9.3",
+    "vitest": "^4.1.10",
+    "wrangler": "^4.111.0"
+  },
+  "pnpm": {
+    "onlyBuiltDependencies": [
+      "esbuild",
+      "sharp",
+      "workerd"
+    ]
+  },
+  "packageManager": "pnpm@11.0.9"
+}

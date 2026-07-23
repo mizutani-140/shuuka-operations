@@ -1,0 +1,12 @@
+mutation UpdatePrivacyPolicy($body: String!) {
+  shopPolicyUpdate(shopPolicy: { type: PRIVACY_POLICY, body: $body }) {
+    shopPolicy {
+      id
+      type
+    }
+    userErrors {
+      field
+      message
+    }
+  }
+}

@@ -1,0 +1,9 @@
+{
+  "page": {
+    "title": "ギフトガイド",
+    "handle": "gift-guide",
+    "body": "<p>祝果のギフト導線、のし、メッセージ、配送希望の案内ページです。テーマテンプレートで内容を表示します。</p>",
+    "isPublished": true,
+    "templateSuffix": "gift-guide"
+  }
+}

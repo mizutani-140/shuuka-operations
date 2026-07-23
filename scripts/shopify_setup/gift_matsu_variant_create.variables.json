@@ -1,0 +1,25 @@
+{
+  "productId": "gid://shopify/Product/9431536074940",
+  "variants": [
+    {
+      "optionValues": [
+        {
+          "optionId": "gid://shopify/ProductOption/11740030369980",
+          "id": "gid://shopify/ProductOptionValue/4874019471548"
+        }
+      ],
+      "price": "20000",
+      "taxable": true,
+      "inventoryItem": {
+        "sku": "SHUKA-GRAPE-PREMIUM-20000",
+        "tracked": true
+      },
+      "inventoryQuantities": [
+        {
+          "locationId": "gid://shopify/Location/87425089724",
+          "availableQuantity": 8
+        }
+      ]
+    }
+  ]
+}

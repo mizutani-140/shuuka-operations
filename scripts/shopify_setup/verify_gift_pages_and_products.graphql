@@ -1,0 +1,26 @@
+query VerifyGiftPagesAndProducts {
+  pages(first: 100) {
+    nodes {
+      handle
+      title
+      templateSuffix
+      isPublished
+    }
+  }
+  products(first: 10, query: "handle:grape-gift-3kg OR handle:premium-grape-gift") {
+    nodes {
+      handle
+      title
+      status
+      variants(first: 10) {
+        nodes {
+          title
+          sku
+          price
+          availableForSale
+          inventoryQuantity
+        }
+      }
+    }
+  }
+}

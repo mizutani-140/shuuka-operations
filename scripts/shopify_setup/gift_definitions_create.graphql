@@ -1,0 +1,37 @@
+mutation GiftDefinitionsCreate(
+  $tiersDefinition: MetafieldDefinitionInput!
+  $varietiesDefinition: MetafieldDefinitionInput!
+) {
+  tiers: metafieldDefinitionCreate(definition: $tiersDefinition) {
+    createdDefinition {
+      id
+      namespace
+      key
+      name
+      type {
+        name
+      }
+    }
+    userErrors {
+      field
+      message
+      code
+    }
+  }
+  varieties: metafieldDefinitionCreate(definition: $varietiesDefinition) {
+    createdDefinition {
+      id
+      namespace
+      key
+      name
+      type {
+        name
+      }
+    }
+    userErrors {
+      field
+      message
+      code
+    }
+  }
+}

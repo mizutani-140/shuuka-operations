@@ -1,0 +1,20 @@
+mutation GiftMatsuVariantCreate(
+  $productId: ID!
+  $variants: [ProductVariantsBulkInput!]!
+) {
+  productVariantsBulkCreate(productId: $productId, variants: $variants) {
+    productVariants {
+      id
+      title
+      sku
+      price
+      position
+      inventoryQuantity
+    }
+    userErrors {
+      field
+      message
+      code
+    }
+  }
+}

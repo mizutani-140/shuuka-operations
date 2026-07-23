@@ -1,0 +1,30 @@
+# Shopify CLIでアプリをリンクした後、client_idを実値へ置き換えます。
+client_id = "e59b352152ab223f9515b8d2b5034281"
+name = "祝果 LINE連携"
+application_url = "https://shuuka-shopify-line-bridge.k-mizutani.workers.dev/shopify/install"
+embedded = false
+
+[build]
+automatically_update_urls_on_dev = false
+
+[access_scopes]
+scopes = "read_customers,read_orders"
+
+[auth]
+redirect_urls = [
+  "https://shuuka-shopify-line-bridge.k-mizutani.workers.dev/shopify/callback"
+]
+
+[webhooks]
+api_version = "2026-07"
+
+[[webhooks.subscriptions]]
+topics = ["orders/create", "orders/updated", "orders/fulfilled", "refunds/create", "app/uninstalled"]
+uri = "https://shuuka-shopify-line-bridge.k-mizutani.workers.dev/webhooks/shopify"
+
+[[webhooks.subscriptions]]
+compliance_topics = ["customers/data_request", "customers/redact", "shop/redact"]
+uri = "https://shuuka-shopify-line-bridge.k-mizutani.workers.dev/webhooks/shopify"
+
+[pos]
+embedded = false

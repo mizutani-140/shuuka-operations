@@ -1,0 +1,105 @@
+query GiftArchitecturePreflight($mainProductId: ID!, $premiumProductId: ID!) {
+  main: product(id: $mainProductId) {
+    id
+    handle
+    title
+    status
+    options {
+      id
+      name
+      position
+      optionValues {
+        id
+        name
+      }
+    }
+    variants(first: 10) {
+      nodes {
+        id
+        title
+        sku
+        price
+        inventoryQuantity
+        inventoryItem {
+          id
+          tracked
+          inventoryLevels(first: 10) {
+            nodes {
+              location {
+                id
+                name
+              }
+              quantities(names: ["available", "on_hand"]) {
+                name
+                quantity
+              }
+            }
+          }
+        }
+      }
+    }
+    tiers: metafield(namespace: "gift", key: "tiers") {
+      id
+      type
+      value
+      jsonValue
+      compareDigest
+    }
+    varieties: metafield(namespace: "gift", key: "varieties") {
+      id
+      type
+      value
+      jsonValue
+      compareDigest
+    }
+  }
+  premium: product(id: $premiumProductId) {
+    id
+    handle
+    title
+    status
+    variants(first: 10) {
+      nodes {
+        id
+        title
+        sku
+        price
+        inventoryQuantity
+        inventoryItem {
+          id
+          tracked
+          inventoryLevels(first: 10) {
+            nodes {
+              location {
+                id
+                name
+              }
+              quantities(names: ["available", "on_hand"]) {
+                name
+                quantity
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+  giftDefinitions: metafieldDefinitions(first: 10, ownerType: PRODUCT, namespace: "gift") {
+    nodes {
+      id
+      namespace
+      key
+      name
+      type {
+        name
+      }
+    }
+  }
+  premiumRedirects: urlRedirects(first: 10, query: "path:/products/premium-grape-gift") {
+    nodes {
+      id
+      path
+      target
+    }
+  }
+}

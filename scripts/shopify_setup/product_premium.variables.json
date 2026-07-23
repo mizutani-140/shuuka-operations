@@ -1,0 +1,62 @@
+{
+  "synchronous": true,
+  "productSet": {
+    "title": "プレミアムブドウギフト 1房",
+    "handle": "premium-grape-gift",
+    "vendor": "祝果",
+    "productType": "フルーツギフト",
+    "status": "ACTIVE",
+    "tags": ["予約販売", "ブドウ", "ギフト", "のし対応", "プレミアム"],
+    "descriptionHtml": "<p>単品で成立する高単価品種の一房ギフトです。富士の輝き等、時期ごとに品種を入れ替えて販売します。品種特徴・生産者名・撮影画像は、確定後に差し替えます。</p>",
+    "productOptions": [
+      {
+        "name": "内容",
+        "position": 1,
+        "values": [
+          { "name": "特選一房" }
+        ]
+      }
+    ],
+    "variants": [
+      {
+        "optionValues": [{ "optionName": "内容", "name": "特選一房" }],
+        "price": "20000",
+        "sku": "SHUKA-GRAPE-PREMIUM-20000",
+        "taxable": true,
+        "inventoryQuantities": [
+          {
+            "locationId": "gid://shopify/Location/87425089724",
+            "name": "available",
+            "quantity": 8
+          }
+        ]
+      }
+    ],
+    "metafields": [
+      {
+        "namespace": "booking",
+        "key": "deadline",
+        "type": "single_line_text_field",
+        "value": "2026年8月10日"
+      },
+      {
+        "namespace": "booking",
+        "key": "shipping_window",
+        "type": "single_line_text_field",
+        "value": "2026年9月上旬以降 順次出荷"
+      },
+      {
+        "namespace": "booking",
+        "key": "current_varieties",
+        "type": "single_line_text_field",
+        "value": "富士の輝き等（時期により入れ替え）"
+      },
+      {
+        "namespace": "booking",
+        "key": "producer_note",
+        "type": "single_line_text_field",
+        "value": "生産者名は確定後に小さく併記"
+      }
+    ]
+  }
+}

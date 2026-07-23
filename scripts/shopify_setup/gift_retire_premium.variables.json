@@ -1,0 +1,12 @@
+{
+  "premiumProduct": {
+    "id": "gid://shopify/Product/9431536173244",
+    "status": "ARCHIVED",
+    "handle": "premium-grape-gift-archived-20260723",
+    "redirectNewHandle": false
+  },
+  "redirect": {
+    "path": "/products/premium-grape-gift",
+    "target": "/products/grape-gift-3kg"
+  }
+}

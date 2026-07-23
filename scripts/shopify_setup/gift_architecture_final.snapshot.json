@@ -1,0 +1,73 @@
+{
+  "capturedAt": "2026-07-23T11:46:00+09:00",
+  "store": "ksz15x-gq.myshopify.com",
+  "mainProduct": {
+    "id": "gid://shopify/Product/9431536074940",
+    "handle": "grape-gift-3kg",
+    "status": "ACTIVE",
+    "option": {
+      "id": "gid://shopify/ProductOption/11740030369980",
+      "name": "お仕立て",
+      "values": [
+        {
+          "id": "gid://shopify/ProductOptionValue/4785522540732",
+          "name": "梅｜旬の定番"
+        },
+        {
+          "id": "gid://shopify/ProductOptionValue/4785522573500",
+          "name": "竹｜華やぎ"
+        },
+        {
+          "id": "gid://shopify/ProductOptionValue/4874019471548",
+          "name": "松｜特別"
+        }
+      ]
+    },
+    "variants": [
+      {
+        "id": "gid://shopify/ProductVariant/47076453744828",
+        "tier": "梅",
+        "price": "5000",
+        "inventory": 19
+      },
+      {
+        "id": "gid://shopify/ProductVariant/47076453777596",
+        "tier": "竹",
+        "price": "10000",
+        "inventory": 20
+      },
+      {
+        "id": "gid://shopify/ProductVariant/47164675096764",
+        "tier": "松",
+        "price": "20000",
+        "inventory": 8
+      }
+    ],
+    "metafields": {
+      "gift.tiers": {
+        "id": "gid://shopify/Metafield/67183548301500",
+        "compareDigest": "7743a8ddf46daa40a614108dd504048df33781518566aede838d3689dab6b6f1"
+      },
+      "gift.varieties": {
+        "id": "gid://shopify/Metafield/67183548334268",
+        "compareDigest": "105dabd7c619d4afa4af3f3f479eb9fb105cef7542c0b7939a00708b5597a9fb"
+      }
+    }
+  },
+  "retiredProduct": {
+    "id": "gid://shopify/Product/9431536173244",
+    "handle": "premium-grape-gift-archived-20260723",
+    "status": "ARCHIVED",
+    "publishedAt": null,
+    "publicationCount": 0
+  },
+  "redirect": {
+    "id": "gid://shopify/UrlRedirect/369988239548",
+    "path": "/products/premium-grape-gift",
+    "target": "/products/grape-gift-3kg"
+  },
+  "themes": {
+    "development": "156888072380",
+    "production": "156889317564"
+  }
+}

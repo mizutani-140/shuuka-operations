@@ -1,0 +1,86 @@
+mutation CreateGiftContentPages {
+  babyGift: pageCreate(page: {title: "出産祝い", handle: "baby-gift", body: "<p>出産祝い向けの祝果ギフト案内です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  weddingGift: pageCreate(page: {title: "結婚祝い", handle: "wedding-gift", body: "<p>結婚祝い向けの祝果ギフト案内です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  returnGift: pageCreate(page: {title: "内祝い", handle: "return-gift", body: "<p>内祝い向けの祝果ギフト案内です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  getWellGift: pageCreate(page: {title: "お見舞い", handle: "get-well-gift", body: "<p>お見舞い向けの祝果ギフト案内です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  birthdayGift: pageCreate(page: {title: "誕生日", handle: "birthday-gift", body: "<p>誕生日向けの祝果ギフト案内です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  seasonalGift: pageCreate(page: {title: "お中元・お歳暮", handle: "seasonal-gift", body: "<p>季節の贈りもの向けの祝果ギフト案内です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  budget5000: pageCreate(page: {title: "¥5,000で選ぶ", handle: "budget-5000", body: "<p>¥5,000のブドウ予約ギフト案内です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  budget10000: pageCreate(page: {title: "¥10,000で選ぶ", handle: "budget-10000", body: "<p>¥10,000のブドウ予約ギフト案内です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  budget20000: pageCreate(page: {title: "¥20,000で選ぶ", handle: "budget-20000", body: "<p>¥20,000のプレミアムブドウギフト案内です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  giftCard: pageCreate(page: {title: "ギフトカード", handle: "gift-card", body: "<p>ギフトカードと配送日指定の確認ページです。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  giftReminder: pageCreate(page: {title: "記念日登録", handle: "gift-reminder", body: "<p>記念日登録と入荷案内の案内ページです。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  giftDiagnosis: pageCreate(page: {title: "ギフト診断", handle: "gift-diagnosis", body: "<p>用途・予算・果物から選ぶギフト診断ページです。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  noshiWrapping: pageCreate(page: {title: "のし・包装について", handle: "noshi-wrapping", body: "<p>のし・包装の案内ページです。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  messageCard: pageCreate(page: {title: "メッセージカード", handle: "message-card", body: "<p>メッセージカードの案内ページです。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  deliveryDate: pageCreate(page: {title: "お届け日指定", handle: "delivery-date", body: "<p>予約商品の出荷時期と配送日指定の案内ページです。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  giftManners: pageCreate(page: {title: "贈答の作法", handle: "gift-manners", body: "<p>贈答の作法に関する読みものページです。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  faq: pageCreate(page: {title: "よくある質問", handle: "faq", body: "<p>祝果の予約・配送・ギフト対応に関するFAQです。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  about: pageCreate(page: {title: "会社について", handle: "about", body: "<p>祝果についての案内ページです。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  producers: pageCreate(page: {title: "生産者紹介", handle: "producers", body: "<p>生産者情報は確定後に更新します。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  contact: pageCreate(page: {title: "お問い合わせ", handle: "contact", body: "<p>ギフト相談、お問い合わせはこちらから。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+  giftCalendar: pageCreate(page: {title: "贈りものの暦", handle: "gift-calendar", body: "<p>年間の贈りもの暦です。</p>", isPublished: true, templateSuffix: "gift-content"}) {
+    page { id title handle templateSuffix isPublished }
+    userErrors { code field message }
+  }
+}
