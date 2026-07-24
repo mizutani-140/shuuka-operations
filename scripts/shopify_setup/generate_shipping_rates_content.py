@@ -10,6 +10,7 @@ from openpyxl import load_workbook
 ROOT = Path(__file__).resolve().parents[2]
 WORKBOOK = ROOT / "フルーツ送料一覧表.xlsx"
 OUT_DIR = ROOT / "scripts" / "shopify_setup"
+OFFICIAL_LINE_URL = "https://lin.ee/sEgCPJs"
 
 DESTINATIONS = [
     ("北海道", 4),
@@ -151,7 +152,7 @@ def build_shipping_policy_body() -> str:
         "<h2>配送業者・配送方法</h2>"
         "<p>商品はすべてヤマト運輸の宅急便でお届けいたします。</p>"
         "<p>※配送は日本国内に限らせていただきます。</p>"
-        '<p>ご注文状況の確認や発送通知は、会員登録後にLINE連携いただくとスムーズにご利用いただけます。会員登録は <a href="/account/register">こちら</a> ／ 公式LINEの登録は準備中です。</p>'
+        f'<p>ご注文状況の確認や発送通知は、会員登録後にLINE連携いただくとスムーズにご利用いただけます。会員登録は <a href="/account">こちら</a> ／ 公式LINEは <a href="{OFFICIAL_LINE_URL}" target="_blank" rel="noopener">こちら</a>からご利用いただけます。</p>'
         "<h2>発送元</h2>"
         "<p>商品は、生産者を中心とした全国の提携パートナーから直送しております。</p>"
         "<p>ご注文いただいた商品が複数の農家からの発送となる場合、それぞれ別送となります。</p>"
