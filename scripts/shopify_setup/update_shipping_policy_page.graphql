@@ -1,0 +1,17 @@
+mutation UpdateShippingPolicyPage($id: ID!, $page: PageUpdateInput!) {
+  pageUpdate(id: $id, page: $page) {
+    page {
+      id
+      title
+      handle
+      templateSuffix
+      isPublished
+      updatedAt
+    }
+    userErrors {
+      code
+      field
+      message
+    }
+  }
+}
