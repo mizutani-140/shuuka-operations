@@ -1,0 +1,13 @@
+query FindShippingPolicyPage($query: String!) {
+  pages(first: 1, query: $query) {
+    nodes {
+      id
+      title
+      handle
+      body
+      templateSuffix
+      isPublished
+      updatedAt
+    }
+  }
+}

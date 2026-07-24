@@ -11,6 +11,7 @@ ROOT = Path(__file__).resolve().parents[2]
 WORKBOOK = ROOT / "フルーツ送料一覧表.xlsx"
 OUT_DIR = ROOT / "scripts" / "shopify_setup"
 OFFICIAL_LINE_URL = "https://lin.ee/sEgCPJs"
+SHIPPING_POLICY_PAGE_ID = "gid://shopify/Page/121837125820"
 
 DESTINATIONS = [
     ("北海道", 4),
@@ -191,7 +192,20 @@ def main() -> None:
             }
         },
     )
-    write_json(OUT_DIR / "update_shipping_policy.variables.json", {"body": build_shipping_policy_body()})
+    shipping_policy_body = build_shipping_policy_body()
+    write_json(OUT_DIR / "update_shipping_policy.variables.json", {"body": shipping_policy_body})
+    write_json(
+        OUT_DIR / "update_shipping_policy_page.variables.json",
+        {
+            "id": SHIPPING_POLICY_PAGE_ID,
+            "page": {
+                "title": "配送ポリシー",
+                "body": shipping_policy_body,
+                "isPublished": True,
+                "templateSuffix": "policy",
+            },
+        },
+    )
     print(json.dumps({"areas": len(areas), "rate_rows": len(rows)}, ensure_ascii=False))
 
 
