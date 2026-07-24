@@ -160,14 +160,21 @@ async function sendNotification(
   if (!link) return;
 
   const logId = crypto.randomUUID();
-  const inserted = await env.DB.prepare(
-    `INSERT OR IGNORE INTO notification_log
+  const claimed = await env.DB.prepare(
+    `INSERT INTO notification_log
       (id, webhook_id, line_friend_id, topic, status, created_at)
-     VALUES (?, ?, ?, ?, 'sending', ?)`,
+     VALUES (?, ?, ?, ?, 'sending', ?)
+     ON CONFLICT(webhook_id) DO UPDATE SET
+       line_friend_id = excluded.line_friend_id,
+       topic = excluded.topic,
+       status = 'sending',
+       error = NULL,
+       sent_at = NULL
+     WHERE notification_log.status = 'failed'`,
   )
     .bind(logId, job.webhookId, link.line_friend_id, job.topic, new Date().toISOString())
     .run();
-  if ((inserted.meta.changes ?? 0) === 0) return;
+  if ((claimed.meta.changes ?? 0) === 0) return;
 
   const harness = createHarness(env);
   try {

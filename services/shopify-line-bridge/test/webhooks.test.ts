@@ -49,7 +49,7 @@ async function webhookRequest(env: Env, webhookId: string, body: string): Promis
 
 function notificationDb(): D1Database {
   let snapshot: Record<string, unknown> | null = null;
-  const notificationWebhookIds = new Set<string>();
+  const notificationStatuses = new Map<string, 'sending' | 'sent' | 'failed'>();
 
   return {
     prepare(sql: string) {
@@ -75,10 +75,18 @@ function notificationDb(): D1Database {
                   cancelled_at: values[10],
                 };
               }
-              if (sql.includes('INSERT OR IGNORE INTO notification_log')) {
+              if (sql.includes('INSERT INTO notification_log')) {
                 const webhookId = String(values[1]);
-                if (notificationWebhookIds.has(webhookId)) return { meta: { changes: 0 } };
-                notificationWebhookIds.add(webhookId);
+                const status = notificationStatuses.get(webhookId);
+                if (status && status !== 'failed') return { meta: { changes: 0 } };
+                notificationStatuses.set(webhookId, 'sending');
+                return { meta: { changes: 1 } };
+              }
+              if (sql.includes("UPDATE notification_log SET status = 'sent'")) {
+                notificationStatuses.set(String(values[1]), 'sent');
+              }
+              if (sql.includes("UPDATE notification_log SET status = 'failed'")) {
+                notificationStatuses.set(String(values[1]), 'failed');
               }
               return { meta: { changes: 1 } };
             },
@@ -267,6 +275,58 @@ describe('Shopify webhook delivery', () => {
     expect(requests.filter(({ url }) => url.endsWith('/messages'))).toHaveLength(1);
     expect(first.ack).toHaveBeenCalledOnce();
     expect(redelivered.ack).toHaveBeenCalledOnce();
+  });
+
+  it('retries a LINE notification after a transient Harness failure', async () => {
+    let messageAttempts = 0;
+    vi.spyOn(globalThis, 'fetch').mockImplementation(async (input) => {
+      const url = typeof input === 'string'
+        ? input
+        : input instanceof URL
+          ? input.toString()
+          : input.url;
+      if (url.endsWith('/messages')) {
+        messageAttempts += 1;
+        if (messageAttempts === 1) {
+          return Response.json(
+            { success: false, error: { code: 'TEMPORARY_FAILURE', message: 'try again' } },
+            { status: 503 },
+          );
+        }
+        return Response.json({ success: true, data: { messageId: 'message-retried' } });
+      }
+      return Response.json({ success: true, data: { id: 'friend-1' } });
+    });
+    const env = {
+      DB: notificationDb(),
+      LINE_HARNESS_API_URL: 'https://harness.example',
+      LINE_HARNESS_API_KEY: 'harness-key',
+    } as unknown as Env;
+    const job: ShopifyWebhookJob = {
+      webhookId: 'webhook-transient-harness-failure',
+      topic: 'orders/create',
+      shopDomain: 'shuuka.myshopify.com',
+      apiVersion: '2026-07',
+      receivedAt: '2026-07-24T00:00:00.000Z',
+      body: JSON.stringify({
+        id: 124,
+        name: '#1002',
+        total_price: '5000',
+        currency: 'JPY',
+        customer: { id: 456 },
+        line_items: [{ name: '旬のブドウギフト', quantity: 1 }],
+      }),
+    };
+    const first = queueMessage(job);
+    const retried = queueMessage(job);
+
+    await processQueue({ messages: [first] } as unknown as MessageBatch<ShopifyWebhookJob>, env);
+    await processQueue({ messages: [retried] } as unknown as MessageBatch<ShopifyWebhookJob>, env);
+
+    expect(messageAttempts).toBe(2);
+    expect(first.retry).toHaveBeenCalledOnce();
+    expect(first.ack).not.toHaveBeenCalled();
+    expect(retried.ack).toHaveBeenCalledOnce();
   });
 
   it('records a failed job and retries it with a bounded backoff', async () => {
