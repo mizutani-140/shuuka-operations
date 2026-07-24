@@ -64,7 +64,22 @@ export async function receiveShopifyWebhook(c: Context<{ Bindings: Env }>): Prom
   if ((inserted.meta.changes ?? 0) === 0) return jsonResponse({ received: true, duplicate: true });
 
   const job: ShopifyWebhookJob = { webhookId, topic, shopDomain, apiVersion, body: rawBody, receivedAt };
-  await c.env.SHOPIFY_EVENTS.send(job, { contentType: 'json' });
+  try {
+    await c.env.SHOPIFY_EVENTS.send(job, { contentType: 'json' });
+  } catch (error) {
+    try {
+      await c.env.DB.prepare(
+        `DELETE FROM webhook_receipts WHERE webhook_id = ? AND status = 'queued'`,
+      ).bind(webhookId).run();
+    } catch (cleanupError) {
+      console.error(JSON.stringify({
+        event: 'webhook_receipt_cleanup_failed',
+        webhookId,
+        message: cleanupError instanceof Error ? cleanupError.message : 'cleanup_failed',
+      }));
+    }
+    throw error;
+  }
   return jsonResponse({ received: true });
 }
 
@@ -145,13 +160,14 @@ async function sendNotification(
   if (!link) return;
 
   const logId = crypto.randomUUID();
-  await env.DB.prepare(
+  const inserted = await env.DB.prepare(
     `INSERT OR IGNORE INTO notification_log
       (id, webhook_id, line_friend_id, topic, status, created_at)
      VALUES (?, ?, ?, ?, 'sending', ?)`,
   )
     .bind(logId, job.webhookId, link.line_friend_id, job.topic, new Date().toISOString())
     .run();
+  if ((inserted.meta.changes ?? 0) === 0) return;
 
   const harness = createHarness(env);
   try {
@@ -222,21 +238,43 @@ async function processPrivacy(env: Env, job: ShopifyWebhookJob, payload: Record<
     .run();
 
   if (job.topic === 'customers/redact' && customerId) {
-    await env.DB.prepare(
-      `UPDATE account_links
-          SET status = 'redacted', customer_display_name = NULL, customer_email_hash = NULL, updated_at = ?
-        WHERE shop_domain = ? AND shopify_customer_id = ?`,
-    ).bind(new Date().toISOString(), job.shopDomain, customerId).run();
+    await env.DB.batch([
+      env.DB.prepare(
+        `DELETE FROM notification_log
+          WHERE line_friend_id IN (
+            SELECT line_friend_id FROM account_links
+             WHERE shop_domain = ? AND shopify_customer_id = ?
+          )`,
+      ).bind(job.shopDomain, customerId),
+      env.DB.prepare(
+        `DELETE FROM order_snapshots WHERE shop_domain = ? AND customer_id = ?`,
+      ).bind(job.shopDomain, customerId),
+      env.DB.prepare(
+        `DELETE FROM account_links WHERE shop_domain = ? AND shopify_customer_id = ?`,
+      ).bind(job.shopDomain, customerId),
+    ]);
   }
   if (job.topic === 'shop/redact') {
     await env.DB.batch([
+      env.DB.prepare(
+        `DELETE FROM notification_log
+          WHERE webhook_id IN (
+            SELECT webhook_id FROM webhook_receipts WHERE shop_domain = ?
+          )`,
+      ).bind(job.shopDomain),
+      env.DB.prepare('DELETE FROM privacy_requests WHERE shop_domain = ?').bind(job.shopDomain),
+      env.DB.prepare('DELETE FROM order_snapshots WHERE shop_domain = ?').bind(job.shopDomain),
       env.DB.prepare('DELETE FROM account_links WHERE shop_domain = ?').bind(job.shopDomain),
+      env.DB.prepare('DELETE FROM merchant_oauth_states WHERE shop_domain = ?').bind(job.shopDomain),
       env.DB.prepare('DELETE FROM shop_installations WHERE shop_domain = ?').bind(job.shopDomain),
+      env.DB.prepare('DELETE FROM customer_link_states'),
+      env.DB.prepare('DELETE FROM webhook_receipts WHERE shop_domain = ?').bind(job.shopDomain),
     ]);
   }
-  await env.DB.prepare('UPDATE privacy_requests SET completed_at = ? WHERE webhook_id = ?')
-    .bind(new Date().toISOString(), job.webhookId)
-    .run();
+  const completionSql = job.topic === 'customers/redact'
+    ? 'UPDATE privacy_requests SET completed_at = ?, customer_id = NULL WHERE webhook_id = ?'
+    : 'UPDATE privacy_requests SET completed_at = ? WHERE webhook_id = ?';
+  await env.DB.prepare(completionSql).bind(new Date().toISOString(), job.webhookId).run();
 }
 
 export async function processShopifyWebhook(env: Env, job: ShopifyWebhookJob): Promise<void> {
