@@ -2,6 +2,8 @@
 
 Cloudflare Workers / D1 / Queues 上で、祝果 Shopify と LINE Harness を接続する単一ストア向け連携です。
 
+開発・デプロイCLIには `.node-version` の Node.js 22.23.4、または24.22.1以上の24系・26.12.1以上の26系が必要です。インストールと各package scriptでは古いNodeを拒否します。Workers本体はworkerd上で動作します。
+
 ## 責務
 
 - ShopifyアプリのインストールOAuthとWebhook署名検証
