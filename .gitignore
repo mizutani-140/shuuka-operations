@@ -2,6 +2,7 @@
 # LINE Harness are independent repositories and must never become gitlinks.
 /*
 !/.gitignore
+!/.node-version
 !/README.md
 !/deploy/
 !/services/
