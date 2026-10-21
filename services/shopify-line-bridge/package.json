@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "type": "module",
+  "engines": {
+    "node": "^22.23.4 || ^24.22.1 || ^26.12.1"
+  },
   "scripts": {
-    "dev": "wrangler dev",
-    "deploy": "wrangler deploy",
-    "typegen": "wrangler types",
-    "typecheck": "tsc --noEmit",
-    "test": "vitest run",
-    "check": "pnpm typegen && pnpm typecheck && pnpm test"
+    "dev": "node scripts/check-node.mjs && wrangler dev",
+    "deploy": "node scripts/check-node.mjs && wrangler deploy",
+    "typegen": "node scripts/check-node.mjs && wrangler types",
+    "typecheck": "node scripts/check-node.mjs && tsc --noEmit",
+    "test": "node scripts/check-node.mjs && vitest run",
+    "check": "node scripts/check-node.mjs && pnpm typegen && pnpm typecheck && pnpm test"
   },
   "dependencies": {
     "@line-harness/sdk": "link:../line-harness/packages/sdk",
